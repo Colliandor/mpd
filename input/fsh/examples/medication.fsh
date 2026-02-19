@@ -202,3 +202,4 @@ Description: "5A. Tilidin (50mg), Naloxon (4mg) oral drops. Branded packaged pro
 * manufacturer.display = "Hexal AG" //We have not profiled MAH data
 
 //Lösung (20 Tropfen = 4 Hübe) enthalten 51,45 mg Tilidinhydrochlorid-Hemihydrat (entsprechend 50 mg Tilidinhydrochlorid) und 4,40 mg Naloxonhydrochlorid-Dihydrat (entsprechend 4 mg Naloxonhydrochlorid).
+

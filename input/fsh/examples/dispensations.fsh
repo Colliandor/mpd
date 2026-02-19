@@ -58,3 +58,4 @@ Description: "400E. Refusal of medication dispense"
 * authorizingPrescription[0] = Reference(400C-prescription-cefuroxime-singleline)
 * quantity = 0 $ucum#1 // 1 pack containing 10 vials
 * whenHandedOver = "2024-12-06T19:54:00Z" // also data-absent-reason?
+

@@ -45,3 +45,7 @@ Description: "This profile defines how to represent Medication data on ePrescrip
   * ^binding.additional.valueSet = $eHDSIDoseForm
   * ^binding.additional.documentation = """MyHealth@EU crossborder value set for dose forms. Based on EDQM Standard Terms.""" 
 * marketingAuthorizationHolder // MS
+
+
+
+

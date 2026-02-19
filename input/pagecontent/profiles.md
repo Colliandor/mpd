@@ -8,37 +8,32 @@ Mappings from eHealth Network Guidelines are not provided by this guide.
 EHDS Medication Prescription model allows multiple items prescribed on one prescription. In such case, EHDS.MedicationPrescription.identifier maps to MedicationRequest.groupIdentifier, and RequestOrchestration/RequestGroup may be the target of some of the prescription elements. Please read [implementation notes](implementationnotes.html) for more information.  
   
 |**Logical model element**|**FHIR Path R5**|**FHIR Path R4**|  
-|EHDSMedicationPrescription.header.identifier|MedicationRequest.identifier or .groupIdentifier|MedicationRequest.identifier or .groupIdentifier|  
-|EHDSMedicationPrescription.header.authorship.author|MedicationRequest.requester|MedicationRequest.requester|  
-|EHDSMedicationPrescription.header.authorship.datetime|MedicationRequest.authoredOn|MedicationRequest.authoredOn|  
 |EHDSMedicationPrescription.header.subject|MedicationRequest.subject|MedicationRequest.subject|  
-|EHDSMedicationPrescription.header.validFrom|MedicationRequest.dispenseRequest.validityPeriod.start|MedicationRequest.dispenseRequest.validityPeriod.start|  
-|EHDSMedicationPrescription.header.validUntil|MedicationRequest.dispenseRequest.validityPeriod.end|MedicationRequest.dispenseRequest.validityPeriod.end|  
-|EHDSMedicationPrescription.header.recorder|MedicationRequest.recorder|MedicationRequest.recorder|  
-|EHDSMedicationPrescription.header.recordingDate|MedicationRequest.eventhistory.recorded|MedicationRequest.eventhistory.recorded|  
+|EHDSMedicationPrescription.header.identifier|MedicationRequest.identifier or .groupIdentifier|MedicationRequest.identifier or .groupIdentifier|  
+|EHDSMedicationPrescription.header.author[x]|MedicationRequest.requester|MedicationRequest.requester|  
+|EHDSMedicationPrescription.header.date|MedicationRequest.authoredOn|MedicationRequest.authoredOn|  
 |EHDSMedicationPrescription.header.status|MedicationRequest.status or RequestOrchestration.status (for multi-item)|MedicationRequest.status or RequestGroup.status (for multi-item)|  
+|EHDSMedicationPrescription.header.language[x]|MedicationRequest.language|MedicationRequest.language|   
 |EHDSMedicationPrescription.header.statusReason[x]|MedicationRequest.statusReason|MedicationRequest.statusReason|   
-|EHDSMedicationPrescription.comment|MedicationRequest.note.text, RequestOrchestration.note.text|MedicationRequest.note.text, RequestGroup.note.text|  
+|EHDSMedicationPrescription.header.presentedForm|||   
 |EHDSMedicationPrescription.prescriptionItem|MedicationRequest|MedicationRequest|  
 |EHDSMedicationPrescription.prescriptionItem.identifier|MedicationRequest.identifier|MedicationRequest.identifier|  
-|EHDSMedicationPrescription.prescriptionItem.category|MedicationRequest.category|MedicationRequest.category|  
 |EHDSMedicationPrescription.prescriptionItem.status|MedicationRequest.status|MedicationRequest.status|  
 |EHDSMedicationPrescription.prescriptionItem.statusReason[x]|MedicationRequest.statusReason|MedicationRequest.statusReason|  
 |EHDSMedicationPrescription.prescriptionItem.medication|MedicationRequest.medication|MedicationRequest.medication[x]|  
 |EHDSMedicationPrescription.prescriptionItem.indication[x]|MedicationRequest.reason|MedicationRequest.reasonCode or .reasonReference|  
-|EHDSMedicationPrescription.prescriptionItem.indicationText|MedicationRequest.reason.concept.text|MedicationRequest.reasonCode.text|  
-|EHDSMedicationPrescription.prescriptionItem.prescriptionIntent|MedicationRequest.reason|MedicationRequest.reason|  
-|EHDSMedicationPrescription.prescriptionItem.treatmentPeriod|MedicationRequest.effectiveDosePeriod|MedicationRequest.extension:effectiveDosePeriod|  
+|EHDSMedicationPrescription.prescriptionItem.intendedUseType|MedicationRequest.reason.concept|MedicationRequest.reasonCode|  
+|EHDSMedicationPrescription.prescriptionItem.periodOfUse|MedicationRequest.effectiveDosePeriod|MedicationRequest.extension:effectiveDosePeriod|  
 |EHDSMedicationPrescription.prescriptionItem.quantityPrescribed|MedicationRequest.dispenseRequest.extension: prescribedQuantity|MedicationRequest.dispenseRequest.extension: prescribedQuantity|  
 |EHDSMedicationPrescription.prescriptionItem.dosageInstructions|MedicationRequest.dosageInstruction|MedicationRequest.dosageInstruction|  
-|EHDSMedicationPrescription.prescriptionItem.preparationInstructions|MedicationRequest.dispenseRequest.dispenserInstruction||  
+|EHDSMedicationPrescription.prescriptionItem.validityPeriod|MedicationRequest.dispenseRequest.validityPeriod|MedicationRequest.dispenseRequest.validityPeriod|  
 |EHDSMedicationPrescription.prescriptionItem.substitution|MedicationRequest.substitution|MedicationRequest.substitution|  
 |EHDSMedicationPrescription.prescriptionItem.substitution.allowed[x]|MedicationRequest.substitution.allowed[x]|MedicationRequest.substitution.allowed[x]|  
 |EHDSMedicationPrescription.prescriptionItem.substitution.reason[x]|MedicationRequest.substitution.reason|MedicationRequest.substitution.reason|  
-|EHDSMedicationPrescription.prescriptionItem.repeatsAllowed|MedicationRequest.dispenseRequest.numberOfRepeatsAllowed|MedicationRequest.dispenseRequest.numberOfRepeatsAllowed|  
+|EHDSMedicationPrescription.prescriptionItem.numberOfRepeats|MedicationRequest.dispenseRequest.numberOfRepeatsAllowed|MedicationRequest.dispenseRequest.numberOfRepeatsAllowed|  
 |EHDSMedicationPrescription.prescriptionItem.minimumDispenseInterval|MedicationRequest.dispenseRequest.dispenseInterval|MedicationRequest.dispenseRequest.dispenseInterval|  
 |EHDSMedicationPrescription.prescriptionItem.offLabel|MedicationRequest.extension:offLabelUse|MedicationRequest.extension:offLabelUse|  
-|EHDSMedicationPrescription.prescriptionItem.comment|MedicationRequest.note.text|MedicationRequest.note.text|  
+|EHDSMedicationPrescription.prescriptionItem.note|MedicationRequest.note.text|MedicationRequest.note.text|  
 {:.table-bordered .table-striped .thead-light}
 
 #### Medication  

@@ -2,7 +2,7 @@ RuleSet: MedicationEpCommon
 
 
 * extension contains $ihe-ext-medication-productname named productName 0..1 // productName
-* extension[productName] ^short = "Name of the medicinal product. Names of different types (full name, short name, etc) and in different languages can be provided if relevant." 
+* extension[productName] ^short = "Current trade name (authorised name) of the medicinal product." 
 
 * extension contains $ihe-ext-medication-classification named classification 0..* // classification
 * extension[classification] ^short = "Classifications of the product, e.g ATC, narcotic/psychotropic, orphan drug, etc"
