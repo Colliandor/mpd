@@ -106,3 +106,7 @@ A product code is typically used when the source of the data is distributed as a
 
 The implementation guide introduces an extension for classification and recommends using it for ATC as well as for any local classifications relevant to the use case. In several countries, ATC is also known to be added to the .code element as an additional coding. This practice is not prohibited by the implementation guide. However, implementations must be able to distinguish the actual prescribed concept from classification codes to remove potential ambiguities in cross-border settings.  
 
+### Data absent reason
+
+This implementation guide does not use data absent reason extensions in profiles.   
+Handling missing data is explained in [HL7 Europe Base and Core FHIR Implementation Guide](https://hl7.eu/fhir/base/missing-data.html).
