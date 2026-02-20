@@ -1,27 +1,38 @@
-{% if isR5 %}
-/* Remove after syncing R5 extensions.
-Extension: PackageType
-Id: package-type
-Title: "Package type"
-Description: "This extension applies to Medication and expresses the type of the container for the product (e.g. bottle, unit-dose blister, pre-filled pen)."
-Context: Medication
-
-* ^url = "http://hl7.eu/fhir/StructureDefinition/package-type"
-* value[x] only CodeableConcept
-* valueCodeableConcept from $eHDSIPackage (example)	
-* valueCodeableConcept ^short = "Type of container, e.g pre-filled syringe, unit-dose blister, sachet, etc."
-*/
-
 
 Profile: MedicationEuMpd
-// Parent: $Medication-uv-ips
 Parent: Medication
 Id: Medication-eu-mpd
 Title: "Medication: MPD"
 Description: "This profile defines how to represent Medication data on ePrescription and eDispensation"
 
+* extension contains $ihe-ext-medication-productname named productName 0..1 // productName
+* extension[productName] ^short = "Current trade name (authorised name) of the medicinal product." 
+
+* extension contains $ihe-ext-medication-classification named classification 0..* // classification
+* extension[classification] ^short = "Classifications of the product, e.g ATC, narcotic/psychotropic, orphan drug, etc"
+
+* extension contains $ihe-ext-medication-sizeofitem named sizeOfItem 0..1 // item.containedQuantity
+* extension[sizeOfItem] ^short = "Size of one item (for example, in a pack of 5 vials, this would represent the size of 1 vial)"
+
+* extension contains $ihe-ext-medication-characteristic named characteristic 0..* // characteristic
+* extension[characteristic] ^short = "Specifies other descriptive properties of the medication."
+
+* extension contains $ihe-ext-medication-unitofpresentation named unitOfPresentation 0..1 // item.unitOfPresentation
+* extension[unitOfPresentation] ^short = "Unit of presentation of the product (e.g. tablet, vial, ampoule, etc)"
+
+* extension contains MedicationPackageType named packageType 0..1
+* extension[packageType] ^short = "Type of container. This information is more relevant in cases when the packaging has an impact on administration of the product (e.g. pre-filled syringe)"
+
+* identifier // MS 
+  * ^short = "Identifier for the medicinal product, its generic representation, or packaged product." //identifier
+* code // MS 
+  * ^short = "A terminology-based code for the product" // productCode
+* ingredient // MS 
+  * ^short = "Ingredient or a part product. For combination packs, each ingredient can be a separate manufactured item with its own ingredients, dose form, and strength" // item
+  * isActive // MS // item.ingredient.role
+
+{% if isR5 %}
 * insert ImposeProfile ( $Medication-ihe , 0)
-* insert MedicationEpCommon
 * extension contains $ihe-ext-medication-device named device 0..* // device
 * extension[device] ^short = "Device, typically an administration device, included in the product."
 * extension[device].extension[device].valueCodeableConcept from $eHDSIPackage (example)
@@ -50,24 +61,7 @@ Description: "This profile defines how to represent Medication data on ePrescrip
 {% endif %}
 
 {% if isR4 %}
-Profile: MedicationEuMpd
-// Parent: $Medication-uv-ips
-Parent: Medication
-// DEFINE THIS AS SPECIALIZAITON OF A COMMON EHDSI PROFILE
-Id: Medication-eu-mpd
-Title: "Medication: MPD"
-Description: "This profile defines how to represent Medication in HL7 FHIR for the purpose of this guide."
 
-// * extension contains $medication-definition-r5 named MedicationDefinitionR5 0..
-// * extension[MedicationDefinitionR5].valueReference only Reference(MedicationKnowledge)
-
-
-//* extension contains $medication-totalVolume-r5 named totalVolume 0..
-//* extension[MedicationTotalVolumeR5]
-
-
-//* insert ImposeProfile ( $Medication-uv-ips , 0)
-* insert MedicationEpCommon
 * extension contains $ihe-ext-medication-device named device 0..* // device
 * extension[device] ^short = "Device, typically an administration device, included in the product."
 * extension[device].extension[device].valueCodeableConcept from $eHDSIPackage (example)
@@ -89,44 +83,5 @@ Description: "This profile defines how to represent Medication in HL7 FHIR for t
     * extension[basisOfStrengthSubstance] ^short = "Substance for which the strength is provided (this could be different from the precise active ingredient)."
 
 * form from $eHDSIDoseForm (example) 
-/** form ^binding.extension[0].url = "http://hl7.org/fhir/tools/StructureDefinition/additional-binding"
-* form ^binding.extension[=].extension[0].url = "purpose"
-* form ^binding.extension[=].extension[=].valueCode = #candidate
-* form ^binding.extension[=].extension[+].url = "valueSet"
-* form ^binding.extension[=].extension[=].valueCanonical = $eHDSIDoseForm
-* form ^binding.extension[=].extension[+].url = "documentation"
-* form ^binding.extension[=].extension[=].valueMarkdown = "MyHealth@EU crossborder value set for dose forms. Based on EDQM."
-*/
-//  * ^short = "Dose form. For a branded product, this would most likely be authorised dose form, but it could also be administrable dose form. For package items, it could be item's individual dose form." // doseForm
-/* 
 
-Extension: MedicationDevice
-Id:        ihe-ext-medication-device
-Title:     "Medication - Device"
-Description: "Device, typically an administration device, included in the medicinal product."
-// Extension on Medication
-* extension contains
-    device 1..1 and
-    quantity 0..1
-* extension[device].value[x] only CodeableConcept or Reference(Device or DeviceDefinition)
-* extension[device] ^short = "Coded or referenced device"
-* extension[quantity].value[x] only Quantity
-* extension[quantity] ^short = "Number of defined devices in te package"
-
-Extension: MedicationStrengthSubstance
-Id: ihe-ext-medication-strengthsubstance
-Title: "Medication - Strength substance"
-Description: "Substance for marking the basis of strength. When the precise active ingredient is a salt, the strength is often provided for the active moiety (basis of strength)."
-Context: Medication.ingredient.strength
-* value[x] only CodeableConcept
-* valueCodeableConcept 1..1
-
-
-Extension: MedicationStrengthType
-Id: ihe-ext-medication-strengthtype
-Title: "Medication - Strength type"
-Description: "Strength type (e.g. concentration strength, presentation strength)"
-Context: Medication.ingredient.strength
-* value[x] only CodeableConcept
-* valueCodeableConcept 1..1 */
 {% endif %}

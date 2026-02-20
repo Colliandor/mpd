@@ -87,5 +87,4 @@ The map is available in HL7 Europe Base and Core FHIR IG
 |substitutionOccurred|MedicationDispense.substitution.wasSubstituted|MedicationDispense.substitution.wasSubstituted| 
 |dosageInstructions|MedicationDispense.dosageInstruction|MedicationDispense.dosageInstruction| 
 |note|MedicationDispense.note|MedicationDispense.note| 
-  
 {:.table-bordered .table-striped .thead-light}
