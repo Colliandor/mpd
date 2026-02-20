@@ -3,7 +3,7 @@
 Instance: 400C-prescription-cefuroxime-singleline
 InstanceOf: MedicationRequestEuMpd
 Usage: #example
-Description: "400C. A prescription/request with one medication and changing dosaging. Uses 'actionable' tag. Cefuroxime sodium."
+Description: "400C. A prescription/request with one medication and changing dosaging. Uses 'actionable' tag. Cefuroxime sodium (substitution allowed)."
 
 * meta.tag = $common-tags#actionable
 * identifier.value = "10-123EP"  // prescription line identifier if exists
@@ -337,7 +337,7 @@ Description: "300C-2. A prescription item (MedicationRequest) that is a part of 
 Instance: 400C-prescription-cefuroxime-singleline
 InstanceOf: MedicationRequestEuMpd
 Usage: #example
-Description: "400C. A prescription/request with one medication and changing dosaging. Uses 'actionable' tag. Cefuroxime sodium."
+Description: "400C. A prescription/request with one medication and changing dosaging. Uses 'actionable' tag. Cefuroxime sodium (substitution allowed)."
 
 * meta.tag = $common-tags#actionable
 * identifier.value = "10-123EP"  // prescription line identifier if exists
