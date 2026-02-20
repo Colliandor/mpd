@@ -95,5 +95,11 @@ HL7 guidance materials for designing request workflows:
 - [Additional explanations - WIP](https://confluence.hl7.org/pages/viewpage.action?pageId=248715046)
 
 
+### Medication: identifier, code, classification
 
+In the case of medications, the distinction between .identifier and .code is not always clear, and practices for using these elements vary across countries. This implementation guide allows the use of the .identifier element for non-instance identifiers, such as IDMP identifiers or product codes from a national product registry or the EMA PMS.  
+
+A product code is typically used when the source of the data is distributed as a code system. This may include SNOMED CT, a national drug extension, or any local code system supporting prescribing and dispensing use cases. It is common to prescribe products at the virtual product level and dispense them at the branded product package level. The source system for virtual products may differ from the source system for branded products.  
+
+The implementation guide introduces an extension for classification and recommends using it for ATC as well as for any local classifications relevant to the use case. In several countries, ATC is also known to be added to the .code element as an additional coding. This practice is not prohibited by the implementation guide. However, implementations must be able to distinguish the actual prescribed concept from classification codes to remove potential ambiguities in cross-border settings.  
 
