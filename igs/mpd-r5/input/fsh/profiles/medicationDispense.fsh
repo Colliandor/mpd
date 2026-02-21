@@ -32,13 +32,6 @@ Description: "MedicationDispense profile for capturing dispensation information 
   * ^extension[$obligation][+].extension[code].valueCode = #SHOULD:able-to-populate
   * ^extension[$obligation][=].extension[actor].valueCanonical = $actor-producer 
 
-//R4* extension contains $medicationDispense-recorded-r5 named recorded 1..1
-//R4* extension[recorded] ^short = "Date and time when the dispense was recorded/issued. This is not necessarily the same as when the medication was handed over to the patient."
-//R4  * ^extension[$obligation][+].extension[code].valueCode = #SHALL:able-to-populate
-//R4  * ^extension[$obligation][=].extension[actor].valueCanonical = $actor-producer 
-* recorded ^short = "Date and time when the dispense was recorded/issued. This is not necessarily the same as when the medication was handed over to the patient."
-* recorded 1..1
-
 * medication only CodeableReference(MedicationEuMpd)
 //R4* medicationReference only Reference(MedicationEuMpd)
 
@@ -50,10 +43,12 @@ Description: "MedicationDispense profile for capturing dispensation information 
 
 
 
+
 * medication
   * ^extension[$obligation][+].extension[code].valueCode = #SHALL:able-to-populate
   * ^extension[$obligation][=].extension[actor].valueCanonical = $actor-producer 
 
-* recorded
+* recorded ^short = "Date and time when the dispense was recorded/issued. This is not necessarily the same as when the medication was handed over to the patient."
+* recorded 1..1
   * ^extension[$obligation][+].extension[code].valueCode = #SHALL:able-to-populate
   * ^extension[$obligation][=].extension[actor].valueCanonical = $actor-producer 
